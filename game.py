@@ -13,7 +13,7 @@ class Location(Enum):
 
 
 class Wolf:
-    def init(self):
+    def __init__(self):
         self.location = Location.left_up
 
     def move(self, new_location: Location):
@@ -22,7 +22,7 @@ class Wolf:
 
 
 class Egg:
-    def init(self, location: Location):
+    def __init__(self, location: Location):
         self.location = location
         self.position = 0
 
@@ -33,7 +33,7 @@ class Egg:
 class Game:
     EGG_PATH_LENGTH = 5
 
-    def init(self):
+    def __init__(self):
         self.sound = False
         self.score = 0
         self.speed = 1.0
@@ -87,7 +87,7 @@ class Game:
 
 
 class Button:
-    def init(self, name: str, action: callable):
+    def __init__(self, name: str, action: callable):
         self.name = name
         self.action = action
 
@@ -96,7 +96,7 @@ class Button:
 
 
 class GameController:
-    def init(self):
+    def __init__(self):
         self.game = Game()
         self.buttons = [
             Button('И', partial(self.game.wolf.move, Location.left_up)),
@@ -116,7 +116,7 @@ def move_wolf_randomly(gc: GameController):
         time.sleep(1)
 
 
-if name == 'main':
+if __name__ == 'main':
     gc = GameController()
     t = Thread(target=move_wolf_randomly, args=(gc,))
     t.start()
